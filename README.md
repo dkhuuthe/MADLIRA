@@ -5,7 +5,7 @@ Malware detection using learning and information retrieval for Android
 MADLIRA is a tool for Android malware detection. It consists in two components: TFIDF component and SVM learning component. In gerneral, it takes an input a set of malwares and benwares and then  extracts the malicious behaviors (TFIDF component) or computes training model (SVM classifier). Then, it uses this knowledge to detect malicious behaviors in the Android application.
 
 ## Insalling
-Download file [MADLIRA.7z](https://lipn.univ-paris13.fr/~dam/tool/androidTool/MADLIRA.7z) and decompress it.
+Download file [MADLIRA.7z](https://lipn.univ-paris13.fr/~dam/tool/androidTool/MADLIRA_.7z) and decompress it.
 
 ### Installed Data:
 + *MADLIRA.jar* is the main application.
