@@ -20,7 +20,7 @@ Download file [MADLIRA.7z](https://lipn.univ-paris13.fr/~dam/tool/androidTool/MA
 This tool have two main components: TFIDF component and SVM component.
 ### TFIDF component
 ```
-Command: MADLIRA TFIDF
+Command: java -jar MADLIRA TFIDF
 ```
 For this component, there are two functions: the training function (Malicious behavior extraction) and the test function (Malicious behavior detection)
 
@@ -32,34 +32,34 @@ MADLIRA TFIDF packAPK -PB benignApkFolder -B benignPack -PM maliciousApkFolder -
 ```
 + Extracting malicious behaviors from two packed files (benignPack and maliciousPack) by using the command:
 ```
-MADLIRA TFIDF train -B benignPack -M maliciousPack
+java -jar MADLIRA TFIDF train -B benignPack -M maliciousPack
 ```
 #### Malicious behavior detection
 + Collect new applications and put them in a folder named checkApk.
 + Detect malicious behaviors of applications in the folder checkApk by using the command:
 ```
-MADLIRA TFIDF check -S checkApk
+java -jar MADLIRA TFIDF check -S checkApk
 ```
 
 **Command:**
 ```
-MADLIRA TFIDF train <Options>
+java -jar MADLIRA TFIDF train <Options>
         Compute the malicious specifications for given training data.
                 -B <filename>: the archive file contains all graphs of training benwares.
                 -M <filename>: the archive file contains all categories of training malwares.
 
-MADLIRA TFIDF check <Options>
+java -jar MADLIRA TFIDF check <Options>
         Check malicious behaviors in the given applications in a folder.
                 -S <folder>: the folder contains all applications (apk files).
 
-MADLIRA TFIDF test <Options>
+java -jar MADLIRA TFIDF test <Options>
         Test the classifier for a given test data.
                 -S <folder>: the folder contains all graphs for testing.
 
-MADLIRA TFIDF clear
+java -jar MADLIRA TFIDF clear
         Clean all training data.
 
-MADLIRA TFIDF install
+java -jar MADLIRA TFIDF install
         Clean old training data and install a new data for training.
                 -B <filename>: the archive file contains all graphs of training benwares.
                 -M <filename>: the archive file contains all categories of training malwares.
@@ -70,64 +70,64 @@ MADLIRA TFIDF install
 + First collect training applications (APK files) and store them in folders named MalApkFolder and BenApkFolder.
 + Pack training applications into archive files named MalPack and BenPack by using this command:
 ```
-MADLIRA TFIDF packAPK -PB BenApkFolder -B BenPack -PM MalApkFolder -M MalPack
+java -jar MADLIRA TFIDF packAPK -PB BenApkFolder -B BenPack -PM MalApkFolder -M MalPack
 ```
 + Clean old training data:
 ```
-MADLIRA TFIDF clear
+java -jar MADLIRA TFIDF clear
 ```
 + Compute the malicious graphs from the training packs (BenPack and MalPack)
 ```
-MADLIRA TFIDF train -B BenPack -M MalPack
+java -jar MADLIRA TFIDF train -B BenPack -M MalPack
 ```
 **Checking new applications:**
 + put these applications in a folder named checkApk and use this command:
 ```
-MADLIRA TFIDF check -S checkApk
+java -jar MADLIRA TFIDF check -S checkApk
 ```
 Output:
 ![output](https://github.com/dkhuuthe/MalDet/raw/path/images/testSamples.PNG)
 
 ### SVM component
 ```
-Command: MADLIRA SVM
+Command: java -jar MADLIRA SVM
 ```
 For this component, there are two functions: the training function and the test function.
 #### Training phase
 + Collect benign applications  in a folder named benignApkFolder and malicious applications in a folder named maliciousApkFolder.
 + Prepare training data by using the commands:
 ```
-MADLIRA SVM packAPK -PB benignApkFolder -B benignPack -PM maliciousApkFolder -M maliciousPack
+java -jar MADLIRA SVM packAPK -PB benignApkFolder -B benignPack -PM maliciousApkFolder -M maliciousPack
 ```
 + Compute the training model by this command:
 ```
-MADLIRA SVM train -B benignPack -M maliciousPack
+java -jar MADLIRA SVM train -B benignPack -M maliciousPack
 ```
 #### Malicious behavior detection
 + Collect new  applications and put  them in a folder named checkApk
 + Detect malicious behaviors of applications in the folder checkApk by using the command:
 ```
-MADLIRA SVM check -S checkApk
+java -jar MADLIRA SVM check -S checkApk
 ```
 **Command:**
 ```
-MADLIRA SVM train <Options>
+java -jar MADLIRA SVM train <Options>
         Compute the classifier for given training data.
                 -T <T>: max length of the common walks (default value = 3).
                 -l <lambda>: lambda value to control the importance of length of walks (default value = 0.4).
                 -B <filename>: the archive file contains all graphs of training benwares.
                 -M <filename>: the archive file contains all graphs of training malwares.
 
-MADLIRA SVM check <Options>
+java -jar MADLIRA SVM check <Options>
         Check malicious behaviors in the applications in a folder.
                 -S <foldername>: the folder contains all apk files.
 
-MADLIRA SVM test <Options>
+java -jar MADLIRA SVM test <Options>
         Test the classifier for given graph data.
                 -S <foldername>: the folder contains all graphs of test data.
                 -n <n>: the number of test samples.
 
-MADLIRA SVM clear
+java -jar MADLIRA SVM clear
         Clean all training data.
 ```
 
@@ -136,6 +136,7 @@ This tool uses the following packages:
 + apktool-2.2.1 (https://ibotpeaches.github.io/Apktool/)
 + ojalgo-41.0.0 (https://github.com/optimatika/ojAlgo)
 + libsvm (http://www.csie.ntu.edu.tw/~cjlin/libsvm/)
++ antlr (https://www.antlr3.org/)
 
 ### References
 + Khanh Huu The Dam and Tayssir Touili. Extracting Android Malicious Behaviors. In Proceedings of ForSE 2017
